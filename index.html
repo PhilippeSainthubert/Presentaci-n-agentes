@@ -200,11 +200,26 @@
   .pilot-note b{color:#fff}
   .pilot-note .mark{color:var(--mint);font-family:'Sora',sans-serif;font-weight:800;font-size:20px;line-height:1.2}
 
+  /* discovery / orientación */
+  .disc{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .disc-block{border:1px solid var(--line);border-radius:14px;padding:26px 28px}
+  .disc-block h3{font-size:16px;margin-bottom:4px}
+  .disc-block .sub{font-size:12px;color:var(--teal);font-family:'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px}
+  .disc-block ol{list-style:none;counter-reset:q}
+  .disc-block li{counter-increment:q;position:relative;padding:10px 0 10px 38px;font-size:14.5px;color:#33455c}
+  .disc-block li + li{border-top:1px dashed var(--line)}
+  .disc-block li::before{
+    content:counter(q,decimal-leading-zero);
+    position:absolute;left:0;top:11px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--teal);
+  }
+
   footer{padding:36px 0 48px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
 
   @media(max-width:920px){
     .def-grid{grid-template-columns:1fr}
     .gov{grid-template-columns:1fr}
+    .disc{grid-template-columns:1fr}
     .layer{grid-template-columns:1fr}
     .layer-name{flex-direction:row;gap:12px;align-items:center;padding:16px 24px}
     .layer-what{border-right:none;border-bottom:1px dashed var(--line)}
@@ -445,7 +460,43 @@ las últimas 24h vía el conector oficial.
 
 <section>
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">05</span><h2>Ciclo de vida: cómo se gana la autonomía</h2></div>
+    <div class="sec-head"><span class="sec-num">05</span><h2>El runtime: Claude Code vs Hermes vs OpenClaw</h2></div>
+    <p class="sec-intro">La capa 3 del stack tiene tres candidatos reales en 2026. No son equivalentes: difieren en modo de ejecución, modelo de skills y — sobre todo — en historial de seguridad. Evaluación técnica:</p>
+    <table>
+      <thead>
+        <tr><th style="width:16%">Harness</th><th style="width:26%">Arquitectura</th><th style="width:24%">Skills / extensión</th><th style="width:18%">Seguridad (track 2026)</th><th style="width:16%">Veredicto</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Claude Code</b><br><span style="font-size:12px;color:var(--muted)">Anthropic</span></td>
+          <td>Sesiones supervisadas (humano en el loop) + tareas programadas y agentes cloud. Subagents con contexto y permisos propios.</td>
+          <td>Skills/subagents en markdown versionado (estándar abierto <code>SKILL.md</code>), hooks, conectores MCP. Comunidad masiva.</td>
+          <td>Modelo de permisos real (allowlist + hooks). Fallas reportadas y parcheadas; soporte comercial detrás.</td>
+          <td><span class="pill read">base · etapas 1–2</span><br><span style="font-size:12px;color:var(--muted)">Donde se definen y maduran los agentes</span></td>
+        </tr>
+        <tr>
+          <td><b>Hermes</b><br><span style="font-size:12px;color:var(--muted)">Nous Research, open source</span></td>
+          <td>Always-on, self-hosted, model-agnostic (incluye modelos locales). Memoria entre sesiones y scheduling nativo. Canales Telegram/Slack/Discord.</td>
+          <td><b>Autogenera skills</b>: detecta workflows repetidos y los guarda como skills reutilizables — mejora con el uso. Compatible con el estándar abierto.</td>
+          <td>Sin incidentes mayores, pero comunidad chica (~5K stars) y "no safe by default": exige aislamiento.</td>
+          <td><span class="pill gate">always-on · etapa 3+</span><br><span style="font-size:12px;color:var(--muted)">Solo en VM aislada, mínimo privilegio</span></td>
+        </tr>
+        <tr>
+          <td><b>OpenClaw</b><br><span style="font-size:12px;color:var(--muted)">open source</span></td>
+          <td>Always-on con gateway central y canales WhatsApp/Telegram/Slack. El más popular (85K+ stars) y el de mayor ecosistema.</td>
+          <td>Miles de skills instalables desde registro público (ClawHub) — que fue justamente el vector del problema.</td>
+          <td>Auditoría 2026: <b>512 vulnerabilidades (8 críticas)</b>, cientos de skills maliciosas en su registro, ~40K instancias expuestas a internet. Sin trust boundaries por diseño.</td>
+          <td><span class="pill never">descartado</span><br><span style="font-size:12px;color:var(--muted)">El costo de gobernarlo supera su ventaja</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-note">La decisión no es "cuál es mejor" en abstracto: es <b>qué etapa del ciclo de vida cubre cada uno</b>. Los agentes nacen y maduran en Claude Code (supervisión, iteración rápida); se gradúan a Hermes cuando necesitan correr solos 24/7; y OpenClaw queda fuera porque su historial de seguridad obliga a un costo de aislamiento que no compensa. Como las skills son un estándar abierto, la misma definición de agente se mueve entre harnesses sin reescribirse.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Ciclo de vida: cómo se gana la autonomía</h2></div>
     <p class="sec-intro">Un agente no nace autónomo — <b>se gradúa</b>. Cada etapa amplía permisos solo si la anterior funcionó, con evidencia del audit log:</p>
     <div class="timeline">
       <div class="step">
@@ -472,6 +523,51 @@ las últimas 24h vía el conector oficial.
     <div class="pilot-note">
       <span class="mark">→</span>
       <div><b>Regla de diseño:</b> la autonomía es una consecuencia del historial, no una feature que se activa el día uno. Un agente que pide permisos amplios desde el inicio es una mala configuración — y en 2026, con cuentas de ads y dominios en juego, también un riesgo innecesario.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Las preguntas que orientan la configuración</h2></div>
+    <p class="sec-intro">Antes de escribir una línea de la definición, estas 12 preguntas determinan cada decisión técnica del agente. Cada bloque alimenta directamente una parte de la configuración:</p>
+    <div class="disc">
+      <div class="disc-block">
+        <h3>Dolor y resultado</h3>
+        <div class="sub">→ decide: rol, modelo y KPI del agente</div>
+        <ol>
+          <li>¿Cuál es la tarea repetitiva que más horas consume cada semana — y quién la hace hoy? <em style="color:var(--muted);font-style:normal;font-size:13px">(define el rol del system prompt)</em></li>
+          <li>¿La tarea es de análisis profundo o de volumen repetitivo? <em style="color:var(--muted);font-style:normal;font-size:13px">(define qué modelo asignar: capacidad vs velocidad/costo)</em></li>
+          <li>¿Qué métrica prueba que funcionó a los 30 días? <em style="color:var(--muted);font-style:normal;font-size:13px">(define el criterio de graduación entre etapas)</em></li>
+        </ol>
+      </div>
+      <div class="disc-block">
+        <h3>Accesos y sistemas</h3>
+        <div class="sub">→ decide: conectores MCP y scopes</div>
+        <ol>
+          <li>¿Quién administra las cuentas (Meta, LinkedIn, Analytics, CMS) y qué nivel de acceso puede delegar? <em style="color:var(--muted);font-style:normal;font-size:13px">(define qué conectores son posibles)</em></li>
+          <li>¿Dónde viven los datos y materiales (CRM, Drive, Notion) — y qué es intocable? <em style="color:var(--muted);font-style:normal;font-size:13px">(define la allowlist de tools y las never-rules)</em></li>
+          <li>¿El tracking de conversiones está limpio (Pixel/CAPI, eventos)? <em style="color:var(--muted);font-style:normal;font-size:13px">(sin señal limpia, un agente de ads no tiene datos para razonar)</em></li>
+        </ol>
+      </div>
+      <div class="disc-block">
+        <h3>Riesgo y aprobaciones</h3>
+        <div class="sub">→ decide: approval gates y límites duros</div>
+        <ol>
+          <li>¿Qué acciones puede ejecutar el agente solo y cuáles exigen OK humano explícito? <em style="color:var(--muted);font-style:normal;font-size:13px">(define los <code>requires_approval</code>)</em></li>
+          <li>¿Cuál es el gasto máximo que puede tocar, y quién aprueba cambios de presupuesto? <em style="color:var(--muted);font-style:normal;font-size:13px">(define budget caps y quién resuelve la cola de aprobaciones)</em></li>
+          <li>¿Hay restricciones de marca, legales o de industria sobre lo que se publica? <em style="color:var(--muted);font-style:normal;font-size:13px">(define las never-rules y la doctrina que el agente lee del brain)</em></li>
+        </ol>
+      </div>
+      <div class="disc-block">
+        <h3>Operación</h3>
+        <div class="sub">→ decide: runtime (sesiones vs always-on) y cadencia</div>
+        <ol>
+          <li>¿La tarea necesita correr 24/7 / en horarios fijos, o alcanza con sesiones de trabajo? <em style="color:var(--muted);font-style:normal;font-size:13px">(define el harness: Claude Code vs graduarse a Hermes)</em></li>
+          <li>¿Quién revisa y aprueba outputs — y cuántas horas reales por semana tiene? <em style="color:var(--muted);font-style:normal;font-size:13px">(define el throughput posible: sin revisor, no hay gates que funcionen)</em></li>
+          <li>¿Qué volumen se espera (campañas/mes, posts/mes, entregables)? <em style="color:var(--muted);font-style:normal;font-size:13px">(define el presupuesto de tokens y si hace falta más de un agente)</em></li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
