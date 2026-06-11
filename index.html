@@ -8,7 +8,7 @@
 <meta name="bingbot" content="noindex,nofollow,noarchive,noimageindex">
 <meta name="ChatGPT-User" content="noindex,nofollow">
 <meta name="GPTBot" content="noindex,nofollow">
-<title>Agentes de IA operados · Scale It</title>
+<title>Configuración técnica de agentes de IA · Scale It</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -42,14 +42,8 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
 
   /* ───── header ───── */
-  header{
-    border-bottom:1px solid var(--line);
-    background:var(--paper);
-  }
-  .header-inner{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:20px 0;
-  }
+  header{border-bottom:1px solid var(--line);background:var(--paper)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
   .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:var(--navy);letter-spacing:-.02em}
   .logo span{color:var(--teal)}
   .doc-tag{
@@ -70,90 +64,127 @@
       radial-gradient(ellipse 500px 350px at 70% 90%,rgba(62,205,165,.14),transparent 60%);
     pointer-events:none;
   }
-  .hero-inner{position:relative;z-index:1;padding:88px 0 76px}
+  .hero-inner{position:relative;z-index:1;padding:84px 0 70px}
   .kicker{
     font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;
     text-transform:uppercase;color:var(--mint);margin-bottom:22px;display:block;
   }
   .hero h1{
-    color:#fff;font-size:clamp(34px,5vw,54px);font-weight:800;letter-spacing:-.025em;
-    max-width:17ch;margin-bottom:24px;
+    color:#fff;font-size:clamp(32px,4.6vw,50px);font-weight:800;letter-spacing:-.025em;
+    max-width:20ch;margin-bottom:24px;
   }
   .hero h1 em{font-style:normal;color:var(--teal)}
-  .hero p.lead{
-    font-size:19px;color:#bcd3e4;max-width:54ch;margin-bottom:36px;
+  .hero p.lead{font-size:18px;color:#bcd3e4;max-width:60ch;margin-bottom:38px}
+  .hero p.lead code{
+    font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--mint);
+    background:rgba(62,205,165,.12);border-radius:6px;padding:2px 7px;
   }
-  .hero-facts{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14)}
-  .fact{
-    padding:22px 36px 4px 0;margin-right:36px;
+  .formula{
+    display:flex;align-items:stretch;gap:0;flex-wrap:wrap;
+    border:1px solid rgba(255,255,255,.16);border-radius:14px;overflow:hidden;
+    background:rgba(255,255,255,.04);
   }
-  .fact b{
-    display:block;font-family:'Sora',sans-serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:-.02em;
-  }
-  .fact span{font-size:13px;color:#8fb0c9}
+  .f-item{flex:1;min-width:150px;padding:20px 22px;border-right:1px solid rgba(255,255,255,.12)}
+  .f-item:last-child{border-right:none}
+  .f-item .op{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+  .f-item b{display:block;font-family:'Sora',sans-serif;font-size:17px;color:#fff;margin-bottom:4px}
+  .f-item span{font-size:12.5px;color:#8fb0c9;line-height:1.45;display:block}
 
   /* ───── sections ───── */
   section{padding:72px 0}
   section + section{border-top:1px solid var(--line)}
   .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px}
-  .sec-num{
-    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--teal);
-  }
+  .sec-num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--teal)}
   .sec-head h2{font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.02em}
-  .sec-intro{color:var(--muted);max-width:62ch;margin-bottom:40px;font-size:17px}
+  .sec-intro{color:var(--muted);max-width:66ch;margin-bottom:40px;font-size:17px}
   .sec-intro b{color:var(--ink)}
+  .sec-intro code,td code,li code,p code{
+    font-family:'JetBrains Mono',monospace;font-size:.88em;color:var(--navy);
+    background:var(--ice);border:1px solid var(--line);border-radius:5px;padding:1px 6px;
+  }
 
-  /* modelo: 3 columnas */
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .pillar{
-    background:var(--ice);border:1px solid var(--line);border-radius:14px;padding:28px 26px;
+  /* definición: layout código + anotaciones */
+  .def-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:start}
+  .codebox{
+    background:var(--navy-deep);border-radius:14px;overflow:hidden;
+    box-shadow:0 20px 50px rgba(3,33,73,.18);
   }
-  .pillar .pictogram{
-    width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-    background:var(--navy);margin-bottom:18px;
+  .codebox-bar{
+    display:flex;align-items:center;gap:8px;padding:12px 18px;
+    background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.08);
   }
-  .pillar .pictogram svg{width:20px;height:20px;stroke:var(--mint)}
-  .pillar h3{font-size:17px;margin-bottom:10px}
-  .pillar p{font-size:14.5px;color:var(--muted)}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .dot:nth-child(1){background:#ff5f57}.dot:nth-child(2){background:#febc2e}.dot:nth-child(3){background:#28c840}
+  .codebox-bar .fname{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8fb0c9;margin-left:10px}
+  .codebox pre{
+    padding:22px 24px;overflow-x:auto;
+    font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.75;color:#d7e6f2;
+  }
+  .c-comment{color:#5a7a96}
+  .c-key{color:var(--teal)}
+  .c-val{color:var(--mint)}
+  .c-h{color:#fff;font-weight:600}
+  .c-warn{color:#ffb454}
+  .annos{display:flex;flex-direction:column;gap:14px}
+  .anno{border-left:3px solid var(--teal);background:var(--ice);border-radius:0 10px 10px 0;padding:14px 18px}
+  .anno h4{font-size:14px;margin-bottom:4px}
+  .anno p{font-size:13px;color:var(--muted)}
+  .anno .ref{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px}
 
-  /* agentes: cards */
-  .agents{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-  .agent{
-    border:1px solid var(--line);border-radius:14px;padding:28px;position:relative;
-    transition:border-color .2s;
+  /* tools table */
+  table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+  thead th{
+    background:var(--navy);color:#fff;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;
+    text-align:left;padding:14px 18px;
   }
-  .agent:hover{border-color:var(--teal)}
-  .agent-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-  .agent h3{font-size:18px}
-  .badge{
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.06em;
-    text-transform:uppercase;border-radius:99px;padding:5px 12px;white-space:nowrap;
+  tbody td{padding:14px 18px;border-top:1px solid var(--line);vertical-align:top;color:#33455c}
+  tbody tr:nth-child(even){background:#f7fbfd}
+  td b{color:var(--navy)}
+  .pill{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;
+    letter-spacing:.05em;text-transform:uppercase;border-radius:99px;padding:4px 10px;white-space:nowrap;
   }
-  .badge.go{background:#e3f9f1;color:#0c7a5c}
-  .badge.mid{background:#fff4e0;color:#9a6200}
-  .agent p{font-size:14.5px;color:var(--muted);margin-bottom:14px}
-  .agent .how{
-    font-size:13.5px;color:var(--navy);background:var(--ice);
-    border-left:3px solid var(--mint);border-radius:0 8px 8px 0;padding:10px 14px;
-  }
-  .agent .how b{font-weight:600}
+  .pill.read{background:#e3f9f1;color:#0c7a5c}
+  .pill.gate{background:#fff4e0;color:#9a6200}
+  .pill.never{background:#fde8e8;color:#b42318}
+  .table-note{font-size:13px;color:var(--muted);margin-top:14px}
 
-  /* gobernanza */
-  .gov{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
-  .gov-item{padding:28px 24px;border-right:1px solid var(--line)}
-  .gov-item:last-child{border-right:none}
-  .gov-item .num{
-    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);font-weight:600;margin-bottom:12px;display:block;
+  /* guardrails */
+  .gov{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .gov-card{border:1px solid var(--line);border-radius:14px;padding:26px}
+  .gov-card .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);font-weight:600;margin-bottom:12px;display:block}
+  .gov-card h3{font-size:16px;margin-bottom:8px}
+  .gov-card p{font-size:13.5px;color:var(--muted)}
+  .gov-card .mech{
+    margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--navy);
+    background:var(--ice);border:1px solid var(--line);border-radius:8px;padding:8px 12px;display:block;
+    line-height:1.5;
   }
-  .gov-item h3{font-size:15.5px;margin-bottom:8px}
-  .gov-item p{font-size:13.5px;color:var(--muted)}
 
-  /* piloto timeline */
+  /* stack layers */
+  .stack{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .layer{display:grid;grid-template-columns:200px 1fr 1fr;border-top:1px solid var(--line)}
+  .layer:first-child{border-top:none}
+  .layer-name{
+    background:var(--navy);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .layer:nth-child(2) .layer-name{background:#06407a}
+  .layer:nth-child(3) .layer-name{background:#0d6a85}
+  .layer:nth-child(4) .layer-name{background:#0f8b8f}
+  .layer-name .lvl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px}
+  .layer-name b{font-family:'Sora',sans-serif;font-size:15.5px}
+  .layer-what,.layer-tech{padding:22px 24px}
+  .layer-what{border-right:1px dashed var(--line)}
+  .layer-what h4,.layer-tech h4{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:8px;font-weight:600;
+  }
+  .layer-what p,.layer-tech p{font-size:13.5px;color:var(--muted)}
+
+  /* lifecycle timeline */
   .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:36px}
   .step{position:relative;padding-top:26px}
-  .step::before{
-    content:"";position:absolute;top:7px;left:0;right:-24px;height:2px;background:var(--line);
-  }
+  .step::before{content:"";position:absolute;top:7px;left:0;right:-24px;height:2px;background:var(--line)}
   .step:last-child::before{right:0}
   .step::after{
     content:"";position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;
@@ -169,59 +200,24 @@
   .pilot-note b{color:#fff}
   .pilot-note .mark{color:var(--mint);font-family:'Sora',sans-serif;font-weight:800;font-size:20px;line-height:1.2}
 
-  /* discovery */
-  .disc{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-  .disc-block{border:1px solid var(--line);border-radius:14px;padding:26px 28px}
-  .disc-block h3{font-size:16px;margin-bottom:4px}
-  .disc-block .sub{font-size:12.5px;color:var(--teal);font-family:'JetBrains Mono',monospace;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
-  .disc-block ol{list-style:none;counter-reset:q}
-  .disc-block li{
-    counter-increment:q;position:relative;padding:10px 0 10px 38px;font-size:14.5px;color:#33455c;
-  }
-  .disc-block li + li{border-top:1px dashed var(--line)}
-  .disc-block li::before{
-    content:counter(q,decimal-leading-zero);
-    position:absolute;left:0;top:11px;
-    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--teal);
-  }
-
-  /* footer cta */
-  .cta{
-    background:linear-gradient(150deg,var(--navy-deep),var(--navy));color:#fff;
-    border-radius:20px;padding:56px;display:flex;align-items:center;justify-content:space-between;gap:40px;
-    position:relative;overflow:hidden;
-  }
-  .cta::after{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(ellipse 500px 300px at 90% 10%,rgba(15,174,193,.25),transparent 60%);
-    pointer-events:none;
-  }
-  .cta > div{position:relative;z-index:1}
-  .cta h2{color:#fff;font-size:clamp(22px,3vw,30px);letter-spacing:-.02em;margin-bottom:10px}
-  .cta p{color:#a9c4d8;font-size:16px;max-width:46ch}
-  .cta a{
-    position:relative;z-index:1;flex-shrink:0;
-    font-family:'Sora',sans-serif;font-weight:700;font-size:16px;text-decoration:none;
-    color:var(--navy-deep);background:var(--mint);border-radius:12px;padding:18px 34px;
-    transition:transform .15s,box-shadow .15s;box-shadow:0 6px 24px rgba(62,205,165,.35);
-    white-space:nowrap;
-  }
-  .cta a:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(62,205,165,.45)}
   footer{padding:36px 0 48px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
 
-  @media(max-width:880px){
-    .grid-3,.agents,.disc{grid-template-columns:1fr}
-    .gov{grid-template-columns:1fr 1fr}
-    .gov-item:nth-child(2n){border-right:none}
-    .gov-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  @media(max-width:920px){
+    .def-grid{grid-template-columns:1fr}
+    .gov{grid-template-columns:1fr}
+    .layer{grid-template-columns:1fr}
+    .layer-name{flex-direction:row;gap:12px;align-items:center;padding:16px 24px}
+    .layer-what{border-right:none;border-bottom:1px dashed var(--line)}
     .timeline{grid-template-columns:1fr 1fr;gap:32px 24px}
-    .cta{flex-direction:column;align-items:flex-start;padding:40px 32px}
   }
   @media(max-width:560px){
     .timeline{grid-template-columns:1fr}
     .step::before{display:none}
-    .hero-inner{padding:64px 0 56px}
+    .hero-inner{padding:60px 0 52px}
     section{padding:56px 0}
+    .formula{flex-direction:column}
+    .f-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.12)}
+    .f-item:last-child{border-bottom:none}
   }
 </style>
 </head>
@@ -230,42 +226,105 @@
 <header>
   <div class="wrap header-inner">
     <div class="logo">Scale<span>It</span></div>
-    <div class="doc-tag">One-pager · Agentes de IA</div>
+    <div class="doc-tag">Doc técnico · Agentes de IA</div>
   </div>
 </header>
 
 <div class="hero">
   <div class="wrap hero-inner">
-    <span class="kicker">Servicio · Agentes operados</span>
-    <h1>Agentes de IA que trabajan para tu negocio. <em>Operados por nosotros.</em></h1>
-    <p class="lead">Diseñamos, operamos y gobernamos agentes de IA que ejecutan trabajo real de marketing — análisis de campañas, contenido, QA — bajo supervisión humana y por las vías oficiales de cada plataforma. Vos recibís resultados y visibilidad total. Sin software que instalar ni mantener.</p>
-    <div class="hero-facts">
-      <div class="fact"><b>2026</b><span>las plataformas ya hablan con agentes: Meta abrió su conector oficial de Ads para IA</span></div>
-      <div class="fact"><b>1 agente</b><span>así empieza todo: un piloto acotado, con KPI definido antes de arrancar</span></div>
-      <div class="fact"><b>30–45 días</b><span>duración del piloto, con decisión de continuar basada en datos</span></div>
+    <span class="kicker">Arquitectura · Configuración de agentes</span>
+    <h1>Así se configura un agente de IA <em>por dentro</em>.</h1>
+    <p class="lead">Un agente no es magia ni una app que se instala: es un <code>modelo</code> que ejecuta <code>instrucciones</code> escritas, con acceso a <code>herramientas</code> acotadas, dentro de un <code>loop</code> supervisado. Este documento muestra exactamente cómo se define, qué puede tocar, qué frenos tiene y sobre qué stack corre.</p>
+    <div class="formula">
+      <div class="f-item">
+        <span class="op">componente 1</span>
+        <b>Modelo</b>
+        <span>El motor de razonamiento (LLM). Se elige por tarea: más capacidad para análisis, más velocidad para tareas repetitivas.</span>
+      </div>
+      <div class="f-item">
+        <span class="op">+ componente 2</span>
+        <b>Instrucciones</b>
+        <span>El rol, las reglas y los límites, escritos en un archivo versionado que se puede leer, auditar y aprobar.</span>
+      </div>
+      <div class="f-item">
+        <span class="op">+ componente 3</span>
+        <b>Herramientas</b>
+        <span>Conectores (MCP/APIs) con permisos explícitos: qué puede leer, qué puede escribir, qué tiene prohibido.</span>
+      </div>
+      <div class="f-item">
+        <span class="op">+ componente 4</span>
+        <b>Loop</b>
+        <span>El ciclo razonar → actuar → observar, con puntos de aprobación humana donde hay gasto o publicación.</span>
+      </div>
     </div>
   </div>
 </div>
 
 <section>
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">01</span><h2>Operados, no entregados</h2></div>
-    <p class="sec-intro">Un agente de IA no es un software que se compra: es un sistema que hay que <b>definir, supervisar y gobernar</b> todos los días. Por eso no te vendemos la herramienta — operamos el servicio.</p>
-    <div class="grid-3">
-      <div class="pillar">
-        <div class="pictogram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></div>
-        <h3>Vos recibís outputs</h3>
-        <p>Reportes, campañas preparadas, contenido listo para aprobar y entregables auditados — más un panel con visibilidad de todo lo que cada agente hizo.</p>
+    <div class="sec-head"><span class="sec-num">01</span><h2>La definición: el agente es un archivo</h2></div>
+    <p class="sec-intro">Cada agente se define en un archivo de texto versionado en Git — mismo formato del estándar abierto <b>Agent Skills</b> que hoy leen Claude, OpenAI, Microsoft y 30+ herramientas. Esto significa: <b>cero caja negra</b> (cualquiera puede leer qué hace), <b>historial completo</b> (cada cambio queda registrado) y <b>portabilidad</b> (no depende de un proveedor). Ejemplo real de un agente analista de Meta Ads:</p>
+    <div class="def-grid">
+      <div class="codebox">
+        <div class="codebox-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="fname">agents/meta-ads-analyst.md</span>
+        </div>
+        <pre><span class="c-comment"># ── Identidad y alcance ──────────────────</span>
+<span class="c-key">name:</span> <span class="c-val">meta-ads-analyst</span>
+<span class="c-key">description:</span> <span class="c-val">Analiza performance diaria de
+  campañas Meta y propone optimizaciones.</span>
+<span class="c-key">model:</span> <span class="c-val">claude-sonnet</span> <span class="c-comment"># costo/velocidad por tarea</span>
+
+<span class="c-comment"># ── Herramientas permitidas (allowlist) ──</span>
+<span class="c-key">tools:</span>
+  <span class="c-val">- mcp:meta-ads:reporting</span>      <span class="c-comment"># lectura</span>
+  <span class="c-val">- mcp:meta-ads:campaigns:read</span>
+  <span class="c-val">- mcp:slack:post:#ads-cliente</span>  <span class="c-comment"># avisos</span>
+
+<span class="c-comment"># ── Límites duros ────────────────────────</span>
+<span class="c-key">budget_tokens_month:</span> <span class="c-val">2_000_000</span>
+<span class="c-key">requires_approval:</span>
+  <span class="c-warn">- cualquier escritura en campañas</span>
+  <span class="c-warn">- cambios de presupuesto</span>
+<span class="c-key">never:</span>
+  <span class="c-warn">- crear/pausar campañas sin aprobación</span>
+  <span class="c-warn">- tocar audiencias de otros clientes</span>
+
+<span class="c-h">## Rol</span>
+Sos el analista de Meta Ads del cliente.
+Cada mañana (07:00) leés las métricas de
+las últimas 24h vía el conector oficial.
+
+<span class="c-h">## Reglas</span>
+1. Si el CPA sube &gt;25% vs media 7d,
+   alertá en Slack con diagnóstico.
+2. Proponé variantes de creatividad para
+   los 3 ads de peor rendimiento.
+3. Toda propuesta de cambio se entrega
+   como borrador — <span class="c-warn">nunca la ejecutás vos</span>.</pre>
       </div>
-      <div class="pillar">
-        <div class="pictogram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-        <h3>Nosotros operamos</h3>
-        <p>El diseño de cada agente, su mantenimiento, la supervisión diaria y la mejora continua corren por cuenta de Scale It, desde nuestra propia infraestructura.</p>
-      </div>
-      <div class="pillar">
-        <div class="pictogram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Cero carga para tu equipo</h3>
-        <p>Sin servidores, sin licencias nuevas, sin curva de aprendizaje. Tu equipo solo hace una cosa: aprobar lo que el agente prepara, en minutos por semana.</p>
+      <div class="annos">
+        <div class="anno">
+          <span class="ref">frontmatter → identidad</span>
+          <h4>Qué es y qué modelo usa</h4>
+          <p>Nombre, propósito y modelo asignado. Un agente de análisis profundo usa un modelo más capaz; uno de tareas repetitivas, uno más rápido y barato.</p>
+        </div>
+        <div class="anno">
+          <span class="ref">tools → allowlist</span>
+          <h4>Solo lo que está en la lista existe</h4>
+          <p>El agente no "descubre" herramientas: si un conector no está declarado, no puede usarlo. Acá este agente lee reporting de Meta y postea en un canal de Slack. Nada más.</p>
+        </div>
+        <div class="anno">
+          <span class="ref">requires_approval / never</span>
+          <h4>Frenos declarados, no prometidos</h4>
+          <p>Las acciones con gasto real exigen aprobación humana y las prohibiciones son explícitas. Esto se aplica a nivel de sistema (hooks), no depende de que el modelo "se porte bien".</p>
+        </div>
+        <div class="anno">
+          <span class="ref">cuerpo → system prompt</span>
+          <h4>Las instrucciones operativas</h4>
+          <p>El rol y las reglas de negocio en lenguaje natural. Es la parte que se itera semana a semana con lo aprendido en operación.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -273,57 +332,83 @@
 
 <section>
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">02</span><h2>Qué puede hacer un agente por vos</h2></div>
-    <p class="sec-intro">Cuatro agentes tipo, ordenados por velocidad de impacto. Cada uno arranca en modo análisis y solo gana capacidades de ejecución cuando se lo gana con resultados.</p>
-    <div class="agents">
-      <div class="agent">
-        <div class="agent-top"><h3>QA de entregables</h3><span class="badge go">Impacto inmediato</span></div>
-        <p>Revisa cada landing, creatividad y pieza de copy antes de que salga: links rotos, UTMs, velocidad, responsive, consistencia con tu marca y checklist de conversión.</p>
-        <div class="how"><b>Cómo opera:</b> auditoría automática sobre tus propias propiedades + reporte accionable. Riesgo cero, valor desde la primera semana.</div>
-      </div>
-      <div class="agent">
-        <div class="agent-top"><h3>Contenido SEO</h3><span class="badge go">Impacto inmediato</span></div>
-        <p>Investiga keywords, arma briefs y produce borradores optimizados con datos de tu negocio — listos para que un editor humano los apruebe y firme.</p>
-        <div class="how"><b>Cómo opera:</b> borrador agéntico + edición humana siempre. Volumen sin calidad penaliza en Google; por eso el humano firma cada pieza.</div>
-      </div>
-      <div class="agent">
-        <div class="agent-top"><h3>Meta Ads</h3><span class="badge go">Vía conector oficial</span></div>
-        <p>Analiza el rendimiento de tus campañas a diario, detecta fugas de presupuesto, propone variantes de creatividades y prepara campañas nuevas para tu aprobación.</p>
-        <div class="how"><b>Cómo opera:</b> conector oficial de Meta para IA (2026). Arranca en modo análisis; cualquier cambio con gasto real requiere aprobación humana.</div>
-      </div>
-      <div class="agent">
-        <div class="agent-top"><h3>LinkedIn Ads</h3><span class="badge mid">Preparación + aprobación</span></div>
-        <p>Construye la campaña completa — audiencias, estructura, copy, presupuesto sugerido — y la deja lista para publicar con un clic de tu equipo o el nuestro.</p>
-        <div class="how"><b>Cómo opera:</b> solo vías aprobadas por LinkedIn. Nunca automatización de navegador que ponga en riesgo tu cuenta publicitaria.</div>
-      </div>
-    </div>
+    <div class="sec-head"><span class="sec-num">02</span><h2>La capa de herramientas: MCP y permisos</h2></div>
+    <p class="sec-intro">Los agentes se conectan a sistemas externos vía <b>MCP</b> (Model Context Protocol), el estándar abierto de conectores que adoptaron Anthropic, OpenAI, Google y las plataformas. Cada conexión tiene credencial propia con mínimo privilegio. Así queda el mapa de herramientas de los cuatro agentes tipo:</p>
+    <table>
+      <thead>
+        <tr><th style="width:18%">Agente</th><th style="width:34%">Conectores</th><th style="width:24%">Lectura (autónoma)</th><th style="width:24%">Escritura (con gate)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>QA de entregables</b></td>
+          <td><code>playwright</code> (browser headless sobre propiedades propias), <code>lighthouse</code>, visión multimodal del modelo</td>
+          <td><span class="pill read">autónoma</span> crawl de landings, screenshots, validación de links/UTMs/schema</td>
+          <td>— solo emite reportes; no escribe en ningún sistema</td>
+        </tr>
+        <tr>
+          <td><b>Contenido SEO</b></td>
+          <td><code>mcp:dataforseo</code> (keywords/SERP), <code>mcp:search-console</code>, <code>mcp:cms</code></td>
+          <td><span class="pill read">autónoma</span> research, métricas, contenido existente</td>
+          <td><span class="pill gate">aprobación</span> publicar en CMS — siempre tras edición humana</td>
+        </tr>
+        <tr>
+          <td><b>Meta Ads</b></td>
+          <td><code>mcp:meta-ads</code> — el conector <b>oficial de Meta</b> (OAuth directo, sin app de developer)</td>
+          <td><span class="pill read">autónoma</span> reporting, insights, diagnóstico de señal Pixel/CAPI</td>
+          <td><span class="pill gate">aprobación</span> crear/editar campañas y presupuestos · <span class="pill never">nunca</span> browser automation</td>
+        </tr>
+        <tr>
+          <td><b>LinkedIn Ads</b></td>
+          <td>Marketing API oficial (tier por aprobación de LinkedIn)</td>
+          <td><span class="pill read">autónoma</span> performance de campañas en cuentas administradas</td>
+          <td><span class="pill gate">aprobación</span> campañas preparadas, publica un humano · <span class="pill never">nunca</span> automatizar el sitio</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-note">La distinción <b>lectura autónoma / escritura con gate</b> es la decisión de diseño central: un agente puede analizar 24/7 sin riesgo, pero toda acción con gasto o publicación pasa por un punto de aprobación implementado a nivel de sistema.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">03</span><h2>Gobernanza: por qué podés confiar</h2></div>
-    <p class="sec-intro">La industria aprendió en 2026 que un agente sin límites es un riesgo, no una ventaja. Nuestra arquitectura pone los frenos <b>antes</b> que la velocidad.</p>
+    <div class="sec-head"><span class="sec-num">03</span><h2>Guardrails: los frenos son código, no promesas</h2></div>
+    <p class="sec-intro">La lección de la industria en 2026 (tras los incidentes de seguridad de los agentes "always-on" mal aislados): los límites tienen que estar <b>fuera del modelo</b>, en la infraestructura. Seis mecanismos concretos:</p>
     <div class="gov">
-      <div class="gov-item">
+      <div class="gov-card">
         <span class="num">/01</span>
-        <h3>Definición legible</h3>
-        <p>Cada agente es un documento que podés leer: su rol, sus herramientas, sus límites. Lo aprobás antes de que opere. Nada de cajas negras.</p>
+        <h3>Hooks de pre-ejecución</h3>
+        <p>Antes de cada acción del agente, un interceptor valida la llamada contra las reglas. Si la acción no está permitida, se bloquea — el modelo ni siquiera puede intentarlo.</p>
+        <span class="mech">PreToolUse → allow | deny | ask_human</span>
       </div>
-      <div class="gov-item">
+      <div class="gov-card">
         <span class="num">/02</span>
-        <h3>Humano en el circuito</h3>
-        <p>Ninguna acción con gasto real ni publicación pública sale sin aprobación humana. El agente prepara; una persona decide.</p>
+        <h3>Credenciales por agente</h3>
+        <p>Cada agente tiene su propia identidad y tokens con mínimo privilegio. Si un agente se compromete, el radio de daño es solo lo que ese agente podía tocar.</p>
+        <span class="mech">1 agente = 1 credencial = 1 scope</span>
       </div>
-      <div class="gov-item">
+      <div class="gov-card">
         <span class="num">/03</span>
-        <h3>Solo vías oficiales</h3>
-        <p>Conectores y APIs oficiales de cada plataforma. Jamás trucos de automatización que arriesguen tus cuentas de ads o tu dominio.</p>
+        <h3>Aislamiento de runtime</h3>
+        <p>Los agentes always-on corren en entorno aislado (VM/sandbox), nunca en una máquina personal, y el gateway no se expone a internet.</p>
+        <span class="mech">sandbox + no-public-gateway</span>
       </div>
-      <div class="gov-item">
+      <div class="gov-card">
         <span class="num">/04</span>
-        <h3>Presupuesto y auditoría</h3>
-        <p>Cada agente tiene límite de gasto propio y deja registro de cada acción. Ves qué hizo, cuándo y cuánto costó.</p>
+        <h3>Presupuesto con corte</h3>
+        <p>Límite de consumo (tokens/costo) por agente y por mes. Warning al 80%, pausa automática al 100%. Un agente en loop no puede quemar presupuesto sin que nadie lo vea.</p>
+        <span class="mech">budget: warn@80% · pause@100%</span>
+      </div>
+      <div class="gov-card">
+        <span class="num">/05</span>
+        <h3>Approval gates</h3>
+        <p>Las acciones marcadas como sensibles (gasto, publicación, datos de cliente) generan una solicitud de aprobación que un humano resuelve desde el panel — con contexto completo.</p>
+        <span class="mech">requires_approval → cola en panel</span>
+      </div>
+      <div class="gov-card">
+        <span class="num">/06</span>
+        <h3>Audit log inmutable</h3>
+        <p>Cada tool call queda registrada: qué hizo el agente, cuándo, con qué input, qué costó. El historial no se puede editar — es la base de la confianza y del debugging.</p>
+        <span class="mech">append-only · por agente · por acción</span>
       </div>
     </div>
   </div>
@@ -331,90 +416,62 @@
 
 <section>
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">04</span><h2>El piloto: 30–45 días, un agente</h2></div>
-    <p class="sec-intro">No vendemos un "equipo de agentes" el día uno. Elegimos juntos <b>el agente de mayor impacto y menor riesgo</b> para tu negocio, definimos el KPI antes de empezar, y dejamos que los datos decidan la expansión.</p>
+    <div class="sec-head"><span class="sec-num">04</span><h2>El stack completo, en capas</h2></div>
+    <p class="sec-intro">La definición del agente (sección 01) es solo una capa. Para operar en serio hacen falta cuatro, cada una con un trabajo distinto:</p>
+    <div class="stack">
+      <div class="layer">
+        <div class="layer-name"><span class="lvl">Capa 4</span><b>Plano de control</b></div>
+        <div class="layer-what"><h4>Qué hace</h4><p>El tablero de operación: estado de cada agente, cola de aprobaciones, consumo/costos en tiempo real, asignación de tareas, alertas.</p></div>
+        <div class="layer-tech"><h4>Implementación</h4><p>Dashboard tipo Mission Control sobre el gateway de agentes. Es la única capa que ve el cliente además de los outputs.</p></div>
+      </div>
+      <div class="layer">
+        <div class="layer-name"><span class="lvl">Capa 3</span><b>Harness / runtime</b></div>
+        <div class="layer-what"><h4>Qué hace</h4><p>Ejecuta el loop del agente: sesiones de trabajo supervisadas, tareas programadas (crons) y agentes persistentes always-on.</p></div>
+        <div class="layer-tech"><h4>Implementación</h4><p>Claude Code / Agent SDK para operación supervisada; runtime always-on aislado para agentes persistentes con scheduling.</p></div>
+      </div>
+      <div class="layer">
+        <div class="layer-name"><span class="lvl">Capa 2</span><b>Conocimiento</b></div>
+        <div class="layer-what"><h4>Qué hace</h4><p>Lo que el agente sabe del negocio: contexto del cliente, brand, playbooks, decisiones, aprendizajes de operación. Sin esto, el agente es genérico.</p></div>
+        <div class="layer-tech"><h4>Implementación</h4><p>Repositorio Git versionado ("brain"): definiciones de agentes, skills compartidas y doctrina, con reglas de escritura y review.</p></div>
+      </div>
+      <div class="layer">
+        <div class="layer-name"><span class="lvl">Capa 1</span><b>Modelo + conectores</b></div>
+        <div class="layer-what"><h4>Qué hace</h4><p>El razonamiento (LLM) y los brazos (MCP/APIs oficiales de Meta, LinkedIn, CMS, analytics).</p></div>
+        <div class="layer-tech"><h4>Implementación</h4><p>Modelos según tarea (capacidad vs costo) + conectores estándar MCP con credenciales de mínimo privilegio.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Ciclo de vida: cómo se gana la autonomía</h2></div>
+    <p class="sec-intro">Un agente no nace autónomo — <b>se gradúa</b>. Cada etapa amplía permisos solo si la anterior funcionó, con evidencia del audit log:</p>
     <div class="timeline">
       <div class="step">
-        <span class="when">Semana 1</span>
-        <h3>Discovery</h3>
-        <p>Sesión de trabajo con tu equipo: dolores, accesos, límites y criterio de éxito. Salimos con el agente elegido y su KPI.</p>
+        <span class="when">Etapa 1</span>
+        <h3>Definición</h3>
+        <p>Se escribe el archivo del agente: rol, tools, límites, reglas. Review y aprobación por escrito antes del primer run.</p>
       </div>
       <div class="step">
-        <span class="when">Semana 2</span>
-        <h3>Diseño y aprobación</h3>
-        <p>Escribimos la definición del agente — rol, herramientas, reglas, lo que nunca puede hacer — y la aprobás por escrito.</p>
-      </div>
-      <div class="step">
-        <span class="when">Semanas 3–5</span>
+        <span class="when">Etapa 2</span>
         <h3>Operación supervisada</h3>
-        <p>El agente trabaja, nosotros supervisamos a diario, tu equipo aprueba outputs. Ajustes semanales sobre lo aprendido.</p>
+        <p>El agente corre en sesiones con humano presente. Solo lectura y borradores. Se itera el prompt con los errores reales.</p>
       </div>
       <div class="step">
-        <span class="when">Semana 6</span>
-        <h3>Medición y decisión</h3>
-        <p>Resultados contra el KPI acordado. Si funcionó, expandimos al siguiente agente. Si no, lo sabés con datos, no con promesas.</p>
+        <span class="when">Etapa 3</span>
+        <h3>Scheduled / always-on</h3>
+        <p>Pasa a ejecución programada en runtime aislado. Sigue sin tocar gasto: analiza, alerta y prepara. Gates activos.</p>
+      </div>
+      <div class="step">
+        <span class="when">Etapa 4</span>
+        <h3>Escritura con gates</h3>
+        <p>Recién acá se habilitan escrituras (campañas, publicación), siempre detrás de approval gates y con presupuesto acotado.</p>
       </div>
     </div>
     <div class="pilot-note">
       <span class="mark">→</span>
-      <div><b>Una regla que nos diferencia:</b> si alguien te promete agentes con "autonomía total" sobre tu presupuesto de ads o tu contenido desde el día uno, está apostando con tus cuentas. La autonomía se gana por etapas, con resultados medidos.</div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-num">05</span><h2>Lo que vamos a preguntarte</h2></div>
-    <p class="sec-intro">El discovery no es un trámite: define qué agente construir, qué puede hacer solo y cómo medimos el éxito. Estas son las 12 preguntas de la primera sesión.</p>
-    <div class="disc">
-      <div class="disc-block">
-        <h3>Dolor y resultado</h3>
-        <div class="sub">Define qué agente</div>
-        <ol>
-          <li>¿Cuál es la tarea repetitiva que más horas le come a tu equipo cada semana — y quién la hace hoy?</li>
-          <li>Si pudieras delegar una sola cosa a un sistema que trabaja 24/7, ¿cuál sería?</li>
-          <li>¿Cómo medirías que esto funcionó a los 30 días?</li>
-        </ol>
-      </div>
-      <div class="disc-block">
-        <h3>Accesos y sistemas</h3>
-        <div class="sub">Define si es viable</div>
-        <ol>
-          <li>¿Quién administra tus cuentas de Meta, LinkedIn y Analytics? ¿Tenemos acceso de partner?</li>
-          <li>¿Dónde viven tus datos y materiales (CRM, Drive, Notion)? ¿Hay algo intocable?</li>
-          <li>¿Tu tracking de conversiones está limpio (Pixel/CAPI)? Sin señal limpia, ningún agente de ads rinde.</li>
-        </ol>
-      </div>
-      <div class="disc-block">
-        <h3>Riesgo y aprobaciones</h3>
-        <div class="sub">Define los límites</div>
-        <ol>
-          <li>¿Qué decisiones puede tomar el sistema solo y cuáles requieren tu OK explícito?</li>
-          <li>¿Cuál es el gasto máximo que tocaría un agente, y quién aprueba cambios de presupuesto?</li>
-          <li>¿Hay restricciones de marca, legales o de industria sobre lo que se publica?</li>
-        </ol>
-      </div>
-      <div class="disc-block">
-        <h3>Operación</h3>
-        <div class="sub">Define el acuerdo</div>
-        <ol>
-          <li>¿Quién de tu lado revisa y aprueba outputs — y tiene 2 horas reales por semana para hacerlo?</li>
-          <li>¿Qué pasó con automatizaciones o agencias anteriores? ¿Por qué no funcionó?</li>
-          <li>¿Qué volumen esperás? (campañas/mes, posts/mes, entregables a revisar)</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="cta">
-      <div>
-        <h2>Empecemos por un agente.</h2>
-        <p>Una sesión de discovery de 60 minutos alcanza para saber cuál, qué KPI lo mide y cuánto cuesta el piloto.</p>
-      </div>
-      <a href="mailto:philippe@growth4u.io?subject=Discovery%20·%20Agentes%20de%20IA%20operados">Agendar discovery</a>
+      <div><b>Regla de diseño:</b> la autonomía es una consecuencia del historial, no una feature que se activa el día uno. Un agente que pide permisos amplios desde el inicio es una mala configuración — y en 2026, con cuentas de ads y dominios en juego, también un riesgo innecesario.</div>
     </div>
   </div>
 </section>
